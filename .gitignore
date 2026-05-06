@@ -21,4 +21,11 @@
 ###< symfony/asset-mapper ###
 
 /.idea
+.DS_Store
+/node_modules/
+/.claude/
+/public/uploads/
 
+###> symfonycasts/sass-bundle ###
+/public/assets/
+###< symfonycasts/sass-bundle ###
