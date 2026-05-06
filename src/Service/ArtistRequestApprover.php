@@ -34,9 +34,16 @@ class ArtistRequestApprover
 
         // Liens
         foreach ($artistRequest->getRawLinks() as $rawLink) {
+            $name = $rawLink['name'] ?? null;
+            $url  = $rawLink['url'] ?? null;
+
+            if (empty($name) || empty($url)) {
+                continue;
+            }
+
             $link = new Link();
-            $link->setName($rawLink['name']);
-            $link->setUrl($rawLink['url']);
+            $link->setName($name);
+            $link->setUrl($url);
             $this->em->persist($link);
             $artist->addLink($link);
         }

@@ -1,0 +1,32 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title %}Add a link — {{ artist.name }}{% endblock %}
+
+{% block main %}
+<div style="max-width: 480px;">
+    <form method="post">
+        <div style="margin-bottom: 1rem;">
+            <label for="link_name" style="display:block;font-weight:600;margin-bottom:4px;">Platform</label>
+            <input type="text" id="link_name" name="link_name" placeholder="Instagram, Soundcloud…"
+                   required autofocus
+                   style="width:100%;padding:.5rem .75rem;border:1px solid #ced4da;border-radius:4px;font-size:1rem;">
+        </div>
+        <div style="margin-bottom: 1.5rem;">
+            <label for="link_url" style="display:block;font-weight:600;margin-bottom:4px;">URL</label>
+            <input type="url" id="link_url" name="link_url" placeholder="https://…"
+                   required
+                   style="width:100%;padding:.5rem .75rem;border:1px solid #ced4da;border-radius:4px;font-size:1rem;">
+        </div>
+        <div style="display:flex;gap:.75rem;">
+            <button type="submit"
+                    style="padding:.5rem 1.25rem;background:#3b82f6;color:#fff;border:none;border-radius:4px;font-size:1rem;cursor:pointer;">
+                ✓ Confirm link
+            </button>
+            <a href="{{ back_url }}"
+               style="padding:.5rem 1.25rem;background:#e5e7eb;color:#374151;border-radius:4px;font-size:1rem;text-decoration:none;">
+                Cancel
+            </a>
+        </div>
+    </form>
+</div>
+{% endblock %}

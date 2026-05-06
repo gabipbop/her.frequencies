@@ -6,8 +6,16 @@ use App\Enum\ArtistRequestStatus;
 use App\Repository\ArtistRequestRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: ArtistRequestRepository::class)]
+#[UniqueEntity(
+    fields: ['email'],
+    message: 'This email is already used.'
+)]
+#[Vich\Uploadable]
 class ArtistRequest
 {
     #[ORM\Id]
@@ -24,6 +32,9 @@ class ArtistRequest
     #[ORM\Column(length: 255)]
     private ?string $city = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $picture = null;
+
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
@@ -33,17 +44,17 @@ class ArtistRequest
     #[ORM\Column]
     private array $raw_categories = [];
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     private ?string $email = null;
 
     #[ORM\Column(enumType: ArtistRequestStatus::class)]
     private ?ArtistRequestStatus $status = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $emailConfirmed = null;
+    #[Vich\UploadableField(mapping: 'artist_request_picture', fileNameProperty: 'picture')]
+    private ?File $pictureFile = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $confirmationToken = null;
+    #[ORM\Column(nullable: true)]
+    private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column]
     private ?\DateTimeImmutable $created_at = null;
@@ -89,6 +100,19 @@ class ArtistRequest
         return $this;
     }
 
+    public function getPicture(): ?string
+    {
+        return $this->picture;
+    }
+
+    public function setPicture(string $picture): static
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+
     public function getDescription(): ?string
     {
         return $this->description;
@@ -103,7 +127,10 @@ class ArtistRequest
 
     public function getRawLinks(): array
     {
-        return $this->raw_links;
+        if (is_array($this->raw_links)) {
+            return $this->raw_links;
+        }
+        return $this->raw_links->toArray();
     }
 
     public function setRawLinks(array $raw_links): static
@@ -149,30 +176,6 @@ class ArtistRequest
         return $this;
     }
 
-    public function getEmailConfirmed(): ?string
-    {
-        return $this->emailConfirmed;
-    }
-
-    public function setEmailConfirmed(string $emailConfirmed): static
-    {
-        $this->emailConfirmed = $emailConfirmed;
-
-        return $this;
-    }
-
-    public function getConfirmationToken(): ?string
-    {
-        return $this->confirmationToken;
-    }
-
-    public function setConfirmationToken(string $confirmationToken): static
-    {
-        $this->confirmationToken = $confirmationToken;
-
-        return $this;
-    }
-
     public function getCreatedAt(): ?\DateTimeImmutable
     {
         return $this->created_at;
@@ -183,5 +186,29 @@ class ArtistRequest
         $this->created_at = $created_at;
 
         return $this;
+    }
+
+    public function getPictureFile(): ?File
+    {
+        return $this->pictureFile;
+    }
+
+    public function setPictureFile(?File $pictureFile = null): void
+    {
+        $this->pictureFile = $pictureFile;
+        if (null !== $pictureFile) {
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function setUpdatedAt(?\DateTimeImmutable $updatedAt): static
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
     }
 }

@@ -1,0 +1,9 @@
+{% block title %}New Artist{% endblock %}
+
+{% block body %}
+    <h1>Create new Artist</h1>
+
+    {{ include('admin/artist/_form.html.twig') }}
+
+    <a href="{{ path('admin_artist_index') }}">back to list</a>
+{% endblock %}

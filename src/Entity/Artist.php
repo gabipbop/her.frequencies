@@ -43,13 +43,18 @@ class Artist
     /**
      * @var Collection<int, Link>
      */
-    #[ORM\ManyToMany(targetEntity: Link::class, inversedBy: 'artists')]
+    #[ORM\ManyToMany(targetEntity: Link::class, inversedBy: 'artists', cascade: ['persist'])]
     private Collection $links;
 
     public function __construct()
     {
         $this->categories = new ArrayCollection();
         $this->links = new ArrayCollection();
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?? '';
     }
 
     public function getId(): ?int

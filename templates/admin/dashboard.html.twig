@@ -1,0 +1,35 @@
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title %}Dashboard{% endblock %}
+
+{% block main %}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+
+    <div style="background: #fff; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.1); border-left: 4px solid #28a745;">
+        <div style="font-size: 2rem; font-weight: bold; color: #28a745;">{{ stats.approved_artists }}</div>
+        <div style="color: #666; margin-top: .25rem;">Approved artists</div>
+        <a href="{{ ea_url().setController('App\\Controller\\Admin\\ArtistCrudController').setAction('index').generateUrl() }}"
+           style="font-size: .8rem; color: #28a745; text-decoration: none;">View all →</a>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.1); border-left: 4px solid #ffc107;">
+        <div style="font-size: 2rem; font-weight: bold; color: #ffc107;">{{ stats.pending_requests }}</div>
+        <div style="color: #666; margin-top: .25rem;">Pending requests</div>
+        <a href="{{ ea_url().setController('App\\Controller\\Admin\\ArtistRequestCrudController').setAction('index').generateUrl() }}"
+           style="font-size: .8rem; color: #ffc107; text-decoration: none;">Review →</a>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.1); border-left: 4px solid #dc3545;">
+        <div style="font-size: 2rem; font-weight: bold; color: #dc3545;">{{ stats.rejected_requests }}</div>
+        <div style="color: #666; margin-top: .25rem;">Rejected requests</div>
+    </div>
+
+    <div style="background: #fff; border-radius: 8px; padding: 1.5rem; box-shadow: 0 1px 4px rgba(0,0,0,.1); border-left: 4px solid #17a2b8;">
+        <div style="font-size: 2rem; font-weight: bold; color: #17a2b8;">{{ stats.categories }}</div>
+        <div style="color: #666; margin-top: .25rem;">Categories</div>
+        <a href="{{ ea_url().setController('App\\Controller\\Admin\\CategoryCrudController').setAction('index').generateUrl() }}"
+           style="font-size: .8rem; color: #17a2b8; text-decoration: none;">Manage →</a>
+    </div>
+
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+<h1>Artist Requests</h1>
+
+{% for request in artists_requests %}
+    <div>
+        <strong>{{ request.name }}</strong>
+
+        {% if request.status.value == 'pending' %}
+            <a href="{{ path('admin_artist_request_approve', {id: request.id}) }}">
+                Approve
+            </a>
+        {% else %}
+            {{ request.status.value }}
+        {% endif %}
+    </div>
+{% endfor %}

@@ -48,7 +48,7 @@ class LoginFormAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        return new RedirectResponse($this->urlGenerator->generate('add_artist_request')); // ou ta route homepage
+        return new RedirectResponse($this->urlGenerator->generate('admin'));
     }
 
     protected function getLoginUrl(Request $request): string
