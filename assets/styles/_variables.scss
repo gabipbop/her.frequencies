@@ -1,0 +1,36 @@
+// === COULEURS ===
+$bg:           #373737;
+$bg-dark:      #2B2929;
+$card-bg:      #433339;
+$card-bg-dark: #31262A;
+
+$cream:        #F3E7D9;
+$cream-muted:  #D0C2B1;
+$mauve:        #AA8E98;
+$mauve-mid:    #725B63;
+$mauve-dark:   #534248;
+
+$cream-10:     rgba(#F3E7D9, 0.1);
+$mauve-dark-10: rgba(#534248, 0.1);
+$dark-70:      rgba(#31262A, 0.7);
+
+// === TYPOGRAPHIE ===
+$font-body:  'Poppins', sans-serif;
+$font-mono:  'Geist Mono', monospace;
+
+// === ESPACEMENTS ===
+$spacing-xs:  4px;
+$spacing-sm:  8px;
+$spacing-md:  16px;
+$spacing-lg:  24px;
+$spacing-xl:  40px;
+$spacing-2xl: 64px;
+
+// === BREAKPOINTS ===
+$bp-mobile:  768px;
+$bp-tablet:  1024px;
+
+// === BORDER RADIUS ===
+$radius-sm:   4px;
+$radius-md:   8px;
+$radius-pill: 100px;

@@ -1,3 +1,6 @@
-body {
-    background-color: skyblue;
-}
+@use 'variables' as *;
+@use 'base';
+@use 'header';
+@use 'hero';
+@use 'filters';
+@use 'cards';

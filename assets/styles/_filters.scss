@@ -1,0 +1,60 @@
+@use 'variables' as *;
+
+.filters {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: 0 $spacing-xl $spacing-xl;
+    overflow-x: auto;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar { display: none; }
+
+    @media (max-width: $bp-mobile) {
+        padding: 0 $spacing-md $spacing-lg;
+    }
+}
+
+.filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: $spacing-xs;
+    padding: 6px 14px;
+    border: 1px solid $mauve-dark;
+    border-radius: $radius-pill;
+    background: transparent;
+    color: $cream-muted;
+    font-family: $font-mono;
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: all 0.2s;
+
+    &:hover {
+        border-color: $mauve;
+        color: $cream;
+    }
+
+    &.is-active {
+        border-color: $cream;
+        color: $cream;
+        background: $cream-10;
+    }
+
+    &--reset {
+        border-color: transparent;
+        color: $mauve;
+
+        &:hover {
+            color: $cream;
+            border-color: transparent;
+            background: transparent;
+        }
+    }
+}
+
+.filter-pill__check {
+    font-size: 0.6rem;
+}
