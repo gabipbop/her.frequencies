@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Her.Frequencies — A directory of women shaping dub & soundsystem culture{% endblock %}
+
+{% block body %}
+    <main>
+        <section class="hero">
+            <h1 class="hero__tagline">A growing directory of women<br>shaping dub &amp; soundsystem culture</h1>
+        </section>
+
+        <div class="filters">
+            <a href="{{ path('app_home') }}"
+               class="filter-pill {% if not activeSlug %}is-active{% endif %}">
+                {% if not activeSlug %}<span class="filter-pill__check">✓</span>{% endif %}
+                All
+            </a>
+            {% for category in categories %}
+                <a href="{{ path('app_home', { category: category.slug }) }}"
+                   class="filter-pill {% if activeSlug == category.slug %}is-active{% endif %}">
+                    {% if activeSlug == category.slug %}<span class="filter-pill__check">✓</span>{% endif %}
+                    {{ category.name }}
+                </a>
+            {% endfor %}
+            {% if activeSlug %}
+                <a href="{{ path('app_home') }}" class="filter-pill filter-pill--reset">Reset</a>
+            {% endif %}
+        </div>
+
+        <div class="grid">
+            {% for artist in artists %}
+                <article class="card">
+                    <p class="card__location">{{ artist.city }}, {{ artist.country }}</p>
+                    <h2 class="card__name">{{ artist.name }}</h2>
+                    <div class="card__tags">
+                        {% for category in artist.categories %}
+                            <span class="tag">{{ category.name }}</span>
+                        {% endfor %}
+                    </div>
+                </article>
+            {% endfor %}
+
+            <a href="#" class="card card--submit">
+                <span class="card__submit-label">Not on the list?</span>
+                <p class="card__submit-title">Submit<br>artist</p>
+                <div class="card__submit-icon">+</div>
+            </a>
+
+            <a href="#" class="card card--about">
+                <span class="card__about-label">Discover our history</span>
+                <p class="card__about-title">About<br>us</p>
+                <div class="card__about-icon">↗</div>
+            </a>
+        </div>
+    </main>
+{% endblock %}

@@ -16,28 +16,20 @@ class ArtistRepository extends ServiceEntityRepository
         parent::__construct($registry, Artist::class);
     }
 
-    //    /**
-    //     * @return Artist[] Returns an array of Artist objects
-    //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('a.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    /** @return Artist[] */
+    public function findAcceptedByCategories(array $categorySlugs = []): array
+    {
+        $qb = $this->createQueryBuilder('a')
+            ->where('a.acceptedAt IS NOT NULL')
+            ->leftJoin('a.categories', 'c')
+            ->addSelect('c')
+            ->orderBy('a.name', 'ASC');
 
-    //    public function findOneBySomeField($value): ?Artist
-    //    {
-    //        return $this->createQueryBuilder('a')
-    //            ->andWhere('a.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        if ($categorySlugs) {
+            $qb->andWhere('c.slug IN (:slugs)')
+               ->setParameter('slugs', $categorySlugs);
+        }
+
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -1,0 +1,33 @@
+{# templates/artist_request/step.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        {# Progress bar #}
+        <div class="progress mb-4">
+            <div class="progress-bar" style="width: {{ (step / totalSteps * 100)|round }}%">
+                Étape {{ step }} / {{ totalSteps }}
+            </div>
+        </div>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+
+        <div class="d-flex justify-content-between mt-3">
+            {% if step > 1 %}
+                <a href="{{ path('artist_request_step', {step: step - 1}) }}" class="btn btn-secondary">
+                    ← Retour
+                </a>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary">
+                {% if step == totalSteps %}
+                    Envoyer ma demande
+                {% else %}
+                    Suivant →
+                {% endif %}
+            </button>
+        </div>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
