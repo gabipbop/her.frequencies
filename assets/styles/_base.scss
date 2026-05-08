@@ -9,6 +9,7 @@
 html {
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
+    height: 100%;
 }
 
 body {
@@ -16,7 +17,10 @@ body {
     color: $cream;
     font-family: $font-body;
     font-weight: 300;
-    min-height: 100vh;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 a {
@@ -29,4 +33,49 @@ button {
     border: none;
     background: none;
     font-family: inherit;
+}
+
+// === LAYOUT PRINCIPAL ===
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.content {
+    flex: 1;
+    display: flex;
+    overflow: hidden;
+    min-height: 0;
+}
+
+.cards-area {
+    flex: 1;
+    overflow-y: auto;
+    min-height: 0;
+    scrollbar-width: thin;
+    scrollbar-color: $mauve-dark transparent;
+
+    &::-webkit-scrollbar { width: 3px; }
+    &::-webkit-scrollbar-track { background: transparent; }
+    &::-webkit-scrollbar-thumb {
+        background: $mauve-dark;
+        border-radius: 2px;
+    }
+}
+
+.sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding: 0 $spacing-xl 0 2px;
+    overflow: hidden;
+
+    @media (max-width: $bp-tablet) {
+        display: none;
+    }
 }

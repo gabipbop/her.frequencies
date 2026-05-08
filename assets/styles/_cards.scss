@@ -1,10 +1,10 @@
 @use 'variables' as *;
 
+// === GRILLE ===
 .grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 2px;
-    padding: 0 $spacing-xl $spacing-2xl;
 
     @media (max-width: $bp-tablet) {
         grid-template-columns: repeat(2, 1fr);
@@ -12,40 +12,38 @@
 
     @media (max-width: $bp-mobile) {
         grid-template-columns: 1fr;
-        padding: 0 $spacing-md $spacing-xl;
     }
 }
 
-// === ARTIST CARD ===
+// === CARD ARTISTE ===
 .card {
     display: flex;
     flex-direction: column;
     gap: $spacing-md;
-    padding: $spacing-lg;
+    padding: $spacing-xl $spacing-lg;
     background: $card-bg;
     border: 1px solid transparent;
-    border-radius: $radius-md;
     transition: border-color 0.2s;
     cursor: pointer;
-    min-height: 160px;
+    min-height: 180px;
 
     &:hover {
-        border-color: $mauve;
+        border-color: $mauve-mid;
     }
 }
 
 .card__location {
     font-family: $font-mono;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     font-weight: 400;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: $mauve;
 }
 
 .card__name {
     font-family: $font-body;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     font-weight: 500;
     color: $cream;
     line-height: 1.2;
@@ -68,64 +66,71 @@
 
 .tag {
     display: inline-block;
-    padding: 3px 10px;
+    padding: 3px 8px;
     border: 1px solid $mauve-dark;
-    border-radius: $radius-pill;
+    border-radius: $radius-sm;
     font-family: $font-mono;
-    font-size: 0.6rem;
+    font-size: 0.58rem;
     font-weight: 400;
     letter-spacing: 0.07em;
     text-transform: uppercase;
     color: $mauve;
 }
 
-// === CARD SPÉCIALE : SUBMIT ===
+// === CARD SUBMIT ===
 .card--submit {
     background: $card-bg-dark;
+    border-radius: 0;
+    border-color: transparent;
     justify-content: space-between;
+    flex: 1;
+    min-height: 0;
 
-    &:hover {
-        border-color: $mauve-mid;
-    }
+    &:hover { border-color: $mauve-mid; }
 }
 
 .card__submit-label {
     font-family: $font-mono;
-    font-size: 0.65rem;
+    font-size: 0.6rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: $mauve;
+    line-height: 1.4;
 }
 
 .card__submit-title {
     font-family: $font-mono;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 400;
     color: $cream;
-    line-height: 1.2;
+    line-height: 1.15;
+    margin-top: auto;
 }
 
 .card__submit-icon {
     align-self: flex-end;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border: 1px solid $mauve-dark;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     color: $cream-muted;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-top: $spacing-md;
 }
 
-// === CARD SPÉCIALE : ABOUT ===
+// === CARD ABOUT ===
 .card--about {
     background: $cream-muted;
+    border-radius: 0;
+    border-color: transparent;
     justify-content: space-between;
+    flex: 1;
+    min-height: 0;
 
-    &:hover {
-        border-color: $mauve-mid;
-    }
+    &:hover { border-color: $mauve-mid; }
 }
 
 .card__about-label {
@@ -134,18 +139,21 @@
     letter-spacing: 0.1em;
     text-transform: uppercase;
     color: $mauve-mid;
+    line-height: 1.4;
 }
 
 .card__about-title {
     font-family: $font-mono;
-    font-size: 1.5rem;
+    font-size: 1.75rem;
     font-weight: 400;
     color: $bg-dark;
-    line-height: 1.2;
+    line-height: 1.15;
+    margin-top: auto;
 }
 
 .card__about-icon {
     align-self: flex-end;
     color: $bg-dark;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    margin-top: $spacing-md;
 }

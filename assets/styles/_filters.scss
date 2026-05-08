@@ -4,33 +4,35 @@
     display: flex;
     align-items: center;
     gap: $spacing-sm;
-    padding: 0 $spacing-xl $spacing-xl;
+    padding: $spacing-lg $spacing-xl;
+    border-bottom: 1px solid $cream-10;
     overflow-x: auto;
+    flex-shrink: 0;
     scrollbar-width: none;
 
     &::-webkit-scrollbar { display: none; }
 
     @media (max-width: $bp-mobile) {
-        padding: 0 $spacing-md $spacing-lg;
+        padding: $spacing-md;
     }
 }
 
 .filter-pill {
     display: inline-flex;
     align-items: center;
-    gap: $spacing-xs;
-    padding: 6px 14px;
+    gap: 6px;
+    padding: 6px 12px;
     border: 1px solid $mauve-dark;
-    border-radius: $radius-pill;
+    border-radius: $radius-sm;
     background: transparent;
     color: $cream-muted;
     font-family: $font-mono;
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     font-weight: 400;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     white-space: nowrap;
-    transition: all 0.2s;
+    transition: border-color 0.2s, color 0.2s, background 0.2s;
 
     &:hover {
         border-color: $mauve;
@@ -38,7 +40,7 @@
     }
 
     &.is-active {
-        border-color: $cream;
+        border-color: $cream-muted;
         color: $cream;
         background: $cream-10;
     }
@@ -57,4 +59,5 @@
 
 .filter-pill__check {
     font-size: 0.6rem;
+    opacity: 0.8;
 }
